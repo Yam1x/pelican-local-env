@@ -9,6 +9,9 @@ jobs:
       - name: echo sha
         run: echo "SHA=${{ github.event.client_payload.sha }}"
 
+      - name: echo commit message
+        run: echo "COMMIT-MESSAGE=${{ github.event.client_payload.commit_message }}"
+
       - name: Checkout  
         uses: actions/checkout@v3 
 
