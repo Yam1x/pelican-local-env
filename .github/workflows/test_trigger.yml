@@ -29,13 +29,13 @@ jobs:
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
 
-      # - name: Commit and Push Changes
-      #   run: |
-      #     git config --global user.name "Workflow"
-      #     git config --global user.email "$Workflow@tourmalinecore.com"
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Workflow"
+          git config --global user.email "$Workflow@tourmalinecore.com"
       
-      #     git add .
+          git add deploy/values-ui.yaml.gotmpl
   
-      #     git commit -m "${{ github.event.client_payload.commit_message }}"
+          git commit -m "${{ github.event.client_payload.commit_message }}"
           
-      #     git push
+          git push
