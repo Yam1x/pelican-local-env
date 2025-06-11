@@ -35,7 +35,7 @@ jobs:
         run: |
           ls deploy
           diff --help
-          diff deploy/values-ui.yaml.gotmpl.1 deploy/values-ui.yaml.gotmpl.2 --normal
+          diff deploy/values-ui.yaml.gotmpl.1 deploy/values-ui.yaml.gotmpl.2 --to-file=deploy/values-ui.yaml.gotmpl.diff
 
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
