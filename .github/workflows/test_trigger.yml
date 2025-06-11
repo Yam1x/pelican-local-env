@@ -23,6 +23,10 @@ jobs:
           cp deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy
           yq . deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.1
           yq ".image.tag = \"locan-env-sha-${{ github.event.client_payload.sha }}\"" deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.2
+      
+      - name: cat 
+        run: cat deploy/values-ui.yaml.gotmpl.2
+      
       - name: diff
         run: diff deploy/values-ui.yaml.gotmpl.1 deploy/values-ui.yaml.gotmpl.2 > deploy/values-ui.yaml.gotmpl.diff
 
