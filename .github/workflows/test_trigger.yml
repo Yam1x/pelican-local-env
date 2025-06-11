@@ -15,5 +15,5 @@ jobs:
       - name: ls
         run: ls
 
-      - name: nano ui values
-        run: nano deploy/values-ui.yaml.gotmpl
+      - name: cat ui values
+        run: cat deploy/values-ui.yaml.gotmpl
