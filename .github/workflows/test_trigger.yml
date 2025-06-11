@@ -21,6 +21,7 @@ jobs:
       - name: write new image tag to ui
         run: |
           cp deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy
+          yq . deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.1
 
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
