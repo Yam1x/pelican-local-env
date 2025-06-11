@@ -15,5 +15,5 @@ jobs:
       - name: ls
         run: ls
 
-      - name: ls pelican-local-env
-        run: ls pelican-local-env
+      - name: nano ui values
+        run: nano deploy/values-ui.yaml.gotmpl
