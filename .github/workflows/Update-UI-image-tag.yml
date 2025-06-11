@@ -3,7 +3,7 @@ on:
   repository_dispatch:
 
 jobs:
-  Update_UI_image_tag:
+  Update-UI-image-tag:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout Local Env  
