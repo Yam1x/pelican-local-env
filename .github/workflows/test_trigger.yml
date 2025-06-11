@@ -23,20 +23,9 @@ jobs:
           cp deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy
           yq . deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.1
           yq ".image.tag = \"locan-env-sha\"" deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.2
-      
-      - name: cat 
-        run: |
-          cat deploy/values-ui.yaml.gotmpl.1
-          cat deploy/values-ui.yaml.gotmpl.2
-          ls
-          ls deploy
-          
-      - name: diff
-        run: |
-          ls deploy
-          diff --help
           diff deploy/values-ui.yaml.gotmpl.1 deploy/values-ui.yaml.gotmpl.2 > deploy/values-ui.yaml.gotmpl.diff || true
-
+          patch -o deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy < deploy/values-ui.yaml.gotmpl.diff
+          
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
 
