@@ -6,5 +6,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: echo smthing
-        run: echo smthing
+      - name: echo sha
+        run: echo "SHA=${{ github.event.client_payload.sha }}"
