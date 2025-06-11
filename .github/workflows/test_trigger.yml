@@ -8,3 +8,12 @@ jobs:
     steps:
       - name: echo sha
         run: echo "SHA=${{ github.event.client_payload.sha }}"
+
+      - name: Checkout  
+        uses: actions/checkout@v3 
+
+      - name: ls
+        run: ls
+
+      - name: ls pelican-local-env
+        run: ls pelican-local-env
