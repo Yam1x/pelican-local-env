@@ -1,33 +1,21 @@
-name: test_trigger
+name: Update UI image tag
 on: 
   repository_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: echo sha
-        run: echo "SHA=${{ github.event.client_payload.sha }}"
-
-      - name: echo commit message
-        run: echo "COMMIT-MESSAGE=${{ github.event.client_payload.commit_message }}"
-
-      - name: Checkout  
+      - name: Checkout Local Env  
         uses: actions/checkout@v3 
 
-      - name: cat ui values
-        run: cat deploy/values-ui.yaml.gotmpl
-
-      - name: write new image tag to ui
+      - name: Write new ui image tag to values
         run: |
           cp deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy
           yq . deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.1
           yq ".image.tag =\"locan-env-sha-${{ github.event.client_payload.sha }}\"" deploy/values-ui.yaml.gotmpl > deploy/values-ui.yaml.gotmpl.2
           diff deploy/values-ui.yaml.gotmpl.1 deploy/values-ui.yaml.gotmpl.2 > deploy/values-ui.yaml.gotmpl.diff || true
           patch -o deploy/values-ui.yaml.gotmpl deploy/values-ui.yaml.gotmpl.copy < deploy/values-ui.yaml.gotmpl.diff
-          
-      - name: cat ui values
-        run: cat deploy/values-ui.yaml.gotmpl
 
       - name: Commit and Push Changes
         run: |
