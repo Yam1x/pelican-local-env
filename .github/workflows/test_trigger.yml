@@ -12,8 +12,11 @@ jobs:
       - name: Checkout  
         uses: actions/checkout@v3 
 
-      - name: ls
-        run: ls
+      - name: cat ui values
+        run: cat deploy/values-ui.yaml.gotmpl
+
+      - name: write new image tag to ui
+        run: yq -i "locan-env-sha-${{ github.event.client_payload.sha }}" deploy/values-ui.yaml.gotmpl
 
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
