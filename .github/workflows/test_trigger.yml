@@ -31,6 +31,6 @@ jobs:
       
           git add .
   
-          git commit -m 'files changed'
+          git commit -m "${{ github.event.client_payload.commit_message }}"
           
           git push
