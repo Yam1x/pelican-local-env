@@ -1,6 +1,6 @@
 name: test_trigger
 on: 
-  workflow_dispatch:
+  repository_dispatch:
 
 jobs:
   build:
