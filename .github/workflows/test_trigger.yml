@@ -16,7 +16,7 @@ jobs:
         run: cat deploy/values-ui.yaml.gotmpl
 
       - name: write new image tag to ui
-        run: yq -i "locan-env-sha-${{ github.event.client_payload.sha }}" deploy/values-ui.yaml.gotmpl
+        run: yq -i ".image.tag = \"locan-env-sha-${{ github.event.client_payload.sha }}\"" deploy/values-ui.yaml.gotmpl
 
       - name: cat ui values
         run: cat deploy/values-ui.yaml.gotmpl
